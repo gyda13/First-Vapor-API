@@ -1,5 +1,5 @@
 # First-Vapor-API
-server-side Swift web framework a backend for IOS App
+server-side Swift web framework a backend for iOS App
 
 ## Why Vapor?
 Vapor is an open-source web framework written in Swift. 
