@@ -18,7 +18,7 @@ Vapor allows you to build back-end applications for iOS apps, front-end web site
 
 
 ## What is next?
-now am going to build a CRUD IOS App using this API
+now am going to build a CRUD iOS App using this API
 </br> https://github.com/gyda13/Crud-Vapor-App
 
 
