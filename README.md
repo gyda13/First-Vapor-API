@@ -1,5 +1,5 @@
 # First-Vapor-API
-server-side Swift web framework a backend for iOS App
+server-side Swift web framework a backend for CRUD iOS App
 
 ## Why Vapor?
 Vapor is an open-source web framework written in Swift. 
@@ -17,12 +17,55 @@ Vapor allows you to build back-end applications for iOS apps, front-end web site
 - DBeaver
 
 
+- GET 
 ```swift
     // GET request routes
     func index(req: Request) throws -> EventLoopFuture<[Product]> {
         return Product.query(on: req.db).all()
     }
-    
+ ```
+ 
+  - POST
+ ```swift
+ 
+  // POST request routes
+    func create(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        let products = try req.content.decode(Product.self)
+        return products.save(on: req.db).transform(to: .ok)
+    }
+  ```  
+  
+  - PUT
+  ```swift
+ // PUT request /products routes
+    func update(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        let products = try req.content.decode(Product.self)
+        
+        return Product.find(products.id, on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap {
+                $0.name = products.name
+                $0.actual_price = products.actual_price
+                $0.profit_price = products.profit_price
+                $0.work_price = products.work_price
+                $0.quantity = products.quantity
+                return $0.update(on: req.db).transform(to: .ok)
+            }
+    }
+```
+  - DELETE
+  ```swift
+  // DELETE Request /products/id (UUID) routes
+    func delete(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        Product.find(req.parameters.get("productID"), on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { $0.delete(on: req.db)}
+            .transform(to: .ok)
+        
+    }
+```
+
+
 
 
 ## What is next?
