@@ -17,6 +17,14 @@ Vapor allows you to build back-end applications for iOS apps, front-end web site
 - DBeaver
 
 
+```swift
+    // GET request routes
+    func index(req: Request) throws -> EventLoopFuture<[Product]> {
+        return Product.query(on: req.db).all()
+    }
+    
+
+
 ## What is next?
 now am going to build a CRUD iOS App using this API
 </br> https://github.com/gyda13/Crud-Vapor-App
@@ -26,6 +34,9 @@ now am going to build a CRUD iOS App using this API
 - https://docs.vapor.codes
 - https://www.kodeco.com/books/server-side-swift-with-vapor/v3.0
 - https://www.youtube.com/playlist?list=PLMRqhzcHGw1Z7xNnqS_yUNm1k9dvq-HbM
+
+## Community
+- discord - http://vapor.team/
 
 
 
